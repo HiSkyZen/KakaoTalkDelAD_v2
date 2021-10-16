@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace KaTalkEspresso
+namespace KakaoTalkDelAD
 {
     class Logger
     {
@@ -35,12 +32,12 @@ namespace KaTalkEspresso
         /// <param name="text"></param>
         public void info(string text)
         {
-            log.Append("[I]" + DateTime.Now.ToString(DATETIME_FORMAT) + " : " +  text + "\r\n");
+            log.Append("[I]" + DateTime.Now.ToString(DATETIME_FORMAT) + " : " + text + "\r\n");
         }
 
         public void warn(string text)
         {
-            if( !logWarn)
+            if (!logWarn)
             {
                 //경고 있었다고 기억
                 logWarn = true;
@@ -50,7 +47,7 @@ namespace KaTalkEspresso
 
         public void error(string text)
         {
-            if ( ! logError)
+            if (!logError)
             {
                 // 오류 있었다고 기억
                 logError = true;

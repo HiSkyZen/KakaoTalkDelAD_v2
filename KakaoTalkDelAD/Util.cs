@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace KaTalkEspresso
+namespace KakaoTalkDelAD
 {
     class Util
     {
@@ -52,7 +48,7 @@ namespace KaTalkEspresso
         {
             // IntPtr 끼리는 비트연산자 사용불가.
             // 따라서 Int64로 변환 후 비트 연산자 사용한 결과를 IntPtr로 반환 
-            return new IntPtr( other.ToInt64() & another.ToInt64() );
+            return new IntPtr(other.ToInt64() & another.ToInt64());
         }
 
         public static IntPtr Int64ToIntPtr(Int64 longVal)

@@ -1,25 +1,21 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KaTalkEspresso
+namespace KakaoTalkDelAD
 {
     public partial class Form1 : Form
     {
-		private static readonly string[] TITLE_KAKAOTALK_STRINGS = { "KakaoTalk", "카카오톡", "カカオトーク" };
+        private static readonly string[] TITLE_KAKAOTALK_STRINGS = { "KakaoTalk", "카카오톡", "カカオトーク" };
 
-		//로그
-		private readonly Logger log = Logger.getInstance();
+        //로그
+        private readonly Logger log = Logger.getInstance();
 
         //카카오톡 경로
         private string predefinedKaTalkPath = null;
@@ -37,14 +33,14 @@ namespace KaTalkEspresso
         {
             InitializeComponent();
         }
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             // 기본 색 지정
-            this.BackColor = Color.Yellow;
+            this.BackColor = SystemColors.Control;
             displayStep();
-            
-            log.info("KaTalkEspresso started");
+
+            log.info("KakaoTalkDelAD started");
 
             // 시작
             waitForKatalk.Enabled = true;
@@ -99,7 +95,7 @@ namespace KaTalkEspresso
         {
             IntPtr handle = IntPtr.Zero;
 
-            if(predefinedKaTalkPath == null || "".Equals(predefinedKaTalkPath))
+            if (predefinedKaTalkPath == null || "".Equals(predefinedKaTalkPath))
             {
                 // 경로가 비어있으면 진행 불가
                 log.error("path not provided. cannot continue.");
@@ -136,27 +132,27 @@ namespace KaTalkEspresso
             Process[] procs = Process.GetProcesses();
 
 
-			// 카카오톡 친구목록 윈도우를 가져오기 위해 다른 채팅방을 닫는 작업
-			foreach (Process proc in procs)
-			{
-				if (proc.ProcessName.Equals(katalkExeStr)) // 카카오톡 프로세스를 찾는다
-				{
-					if (TITLE_KAKAOTALK_STRINGS.Contains(proc.MainWindowTitle))
-					{
-						break; // 카카오톡 메인 페이지를 찾으면 반복문 중단
-					}
-					else // 프로세스에 해당하는 윈도우를 찾았으나, 친구 목록 윈도우가 아님
-					{
-						log.info("close subWindow : " + proc.MainWindowTitle);
-						proc.CloseMainWindow();
-						procs = Process.GetProcesses(); // 윈도우를 닫고 프로세스 목록을 다시 읽어옴
-					}
-				}
-			}
+            // 카카오톡 친구목록 윈도우를 가져오기 위해 다른 채팅방을 닫는 작업
+            foreach (Process proc in procs)
+            {
+                if (proc.ProcessName.Equals(katalkExeStr)) // 카카오톡 프로세스를 찾는다
+                {
+                    if (TITLE_KAKAOTALK_STRINGS.Contains(proc.MainWindowTitle))
+                    {
+                        break; // 카카오톡 메인 페이지를 찾으면 반복문 중단
+                    }
+                    else // 프로세스에 해당하는 윈도우를 찾았으나, 친구 목록 윈도우가 아님
+                    {
+                        log.info("close subWindow : " + proc.MainWindowTitle);
+                        proc.CloseMainWindow();
+                        procs = Process.GetProcesses(); // 윈도우를 닫고 프로세스 목록을 다시 읽어옴
+                    }
+                }
+            }
 
 
-			//카톡 exe 이름은 소문자로 바꾸고 이걸 비교에 사용
-			katalkExeStr = katalkExeStr.ToLower();
+            //카톡 exe 이름은 소문자로 바꾸고 이걸 비교에 사용
+            katalkExeStr = katalkExeStr.ToLower();
 
             log.info("Checking for running " + procs.Length + " processes to pinpoint target executable.");
             foreach (Process proc in procs)
@@ -173,8 +169,8 @@ namespace KaTalkEspresso
                         {
                             log.info("this process matches with provided path. using this as further use.");
                             handle = proc.MainWindowHandle;//카톡 메인창 핸들
-                            //handle = proc.Handle;// 카톡 핸들    
-                        //MessageBox.Show("detection successful");
+                                                           //handle = proc.Handle;// 카톡 핸들    
+                                                           //MessageBox.Show("detection successful");
                         }
                     }
                     catch (Win32Exception w32e)
@@ -274,7 +270,7 @@ namespace KaTalkEspresso
                         // 경로에 실행파일이 포함된 경우 따옴표 제거된 문자열을 알아둠
                         matchSub = matchSub.Substring(firstQuote, lastQuote - firstQuote);
                         openKakaoReg = matchSub;
-                        
+
                         exeExtracted = true;
                     }
                 }
@@ -287,7 +283,7 @@ namespace KaTalkEspresso
                 else
                 {
                     // 경로 추출 실패
-                    log.warn("failed to extract file path from registry"); 
+                    log.warn("failed to extract file path from registry");
                 }
 
             }
@@ -299,7 +295,7 @@ namespace KaTalkEspresso
             finally
             {
                 // 레지스트리를 접근했으면 닫아줘야 한다.
-                if(kakaoOpen != null)
+                if (kakaoOpen != null)
                 {
                     try
                     {
@@ -382,10 +378,10 @@ namespace KaTalkEspresso
                         try
                         {
                             //카톡 시작
-                            
+
                             ProcessStartInfo katalkExe = new ProcessStartInfo(predefinedKaTalkPath);
                             Process.Start(katalkExe);
-                            
+
                             //다음 단계로
                             step++;
 
@@ -423,12 +419,12 @@ namespace KaTalkEspresso
                     step02.Text = "Tried hiding ads\n광고 숨김 시도함";
 
                     //광고가 숨겨진 경우에만 타이머를 멈춤.
-                    if((hideResult & AdCloser.AdCloseResult.NOT_CLOSED_ADS_ON_FRIENDS_LIST) == 0)
+                    if ((hideResult & AdCloser.AdCloseResult.NOT_CLOSED_ADS_ON_FRIENDS_LIST) == 0)
                     {
 
                         //카톡 대기 타이머 중지
                         waitForKatalk.Enabled = false;
-                    
+
                         // 다음 단계로
                         step++;
 
@@ -466,12 +462,12 @@ namespace KaTalkEspresso
             // 카톡 닫기 결과를 반환합니다.
             return AdCloser.closeAdsKakaoTalk(hWndKaTalk);
         }
-            
+
         private void waitForExit_Tick(object sender, EventArgs e)
         {
             exitTimer--;
 
-            if(exitTimer <= 0)
+            if (exitTimer <= 0)
             {
                 //지정한 시간이 지남
 
@@ -492,6 +488,11 @@ namespace KaTalkEspresso
             {
                 // 창이 열린 동안 이구간으로 진입되지 않는다. Show는 모달인듯
             }
+        }
+
+        private void weblink_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/hiskyzen/KakaoTalkDelAD");
         }
     }
 }

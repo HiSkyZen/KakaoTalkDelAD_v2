@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace KaTalkEspresso
+namespace KakaoTalkDelAD
 {
     class AdCloser
     {
@@ -24,7 +20,7 @@ namespace KaTalkEspresso
         private const string CLASSNAME_KAKAOTALK = "EVA_ChildWindow";
         // private const string CLASSNAME_KAKAOTALK_AD = "EVA_Window";
         private const string CLASSNAME_KAKAOTALK_AD = "BannerAdWnd";
-        private static readonly string[] CLASSNAMES_ADS_STRINGS = {"FAKE_WND_REACHPOP" };
+        private static readonly string[] CLASSNAMES_ADS_STRINGS = { "FAKE_WND_REACHPOP" };
         // 카카오톡 창 제목 문자열
         private static readonly string[] TITLE_KAKAOTALK_STRINGS = { "KakaoTalk", "카카오톡", "カカオトーク" };
 
@@ -76,7 +72,7 @@ namespace KaTalkEspresso
                     // 카톡인지 확인합니다.
                     bool isKatalkWnd = false;
 
-                    
+
 
                     if (CLASSNAME_KAKAOTALK.Equals(mainWndSpec.ClassName))
                     {
@@ -86,7 +82,7 @@ namespace KaTalkEspresso
                         {
                             if (validTitle.Equals(mainWndSpec.Title))
                             {
-                                LOG.info("found Kakaotalk's main Window: "+ mainWndSpec.Title);
+                                LOG.info("found Kakaotalk's main Window: " + mainWndSpec.Title);
                                 // 카카오톡 창 제목입니다.
                                 isKatalkWnd = true;
                                 break;
@@ -113,10 +109,10 @@ namespace KaTalkEspresso
                         WinAPI.RECT rectKatalkMain = new WinAPI.RECT();
 
                         WinAPI.GetWindowRect(katalkHWnd, out rectKatalkMain);
-                        
+
                         IntPtr hwndChildAd = WinAPI.FindWindowEx(katalkHWnd, IntPtr.Zero, CLASSNAME_KAKAOTALK_AD, null);
                         LOG.info("found child ad: " + WinAPI.WindowSpec.getSpec(hwndChildAd));
-                        if(!IntPtr.Zero.Equals(hwndChildAd))
+                        if (!IntPtr.Zero.Equals(hwndChildAd))
                         {
                             LOG.info("trying to hide ad on friends list.");
                             // 의미 없다. 광고가 이미 숨겨진 경우에도 false가 나온다.
@@ -125,14 +121,14 @@ namespace KaTalkEspresso
                             int listAdHideResult = WinAPI.GetLastWin32Error();
                             LOG.info("result after hiding ads on friend list: " + listAdHideResult);
 
-                            adOnListHidden |= (listAdHideResult == 0) ;
-                            
+                            adOnListHidden |= (listAdHideResult == 0);
+
                             if (adOnListHidden)
                             {
                                 LOG.info("tuning window to trim empty space");
                                 IntPtr hwndFriendList = WinAPI.FindWindowEx(katalkHWnd, IntPtr.Zero, CLASSNAME_KAKAOTALK, null);
                                 WinAPI.SetWindowPos(hwndChildAd, WinAPI.HwndInsertAfterInt.Bottom, 0, 0, 0, 0, WinAPI.SetWindowPosFlags.SWP_NOMOVE);
-                                WinAPI.SetWindowPos(hwndFriendList, WinAPI.HwndInsertAfterInt.Bottom, 0, 0, (rectKatalkMain.Right - rectKatalkMain.Left), (rectKatalkMain.Bottom - rectKatalkMain.Top - 36), WinAPI.SetWindowPosFlags.SWP_NOMOVE);
+                                WinAPI.SetWindowPos(hwndFriendList, WinAPI.HwndInsertAfterInt.Bottom, 0, 0, (rectKatalkMain.Right - rectKatalkMain.Left), (rectKatalkMain.Bottom - rectKatalkMain.Top - 32), WinAPI.SetWindowPosFlags.SWP_NOMOVE);
                             }
                             else
                             {

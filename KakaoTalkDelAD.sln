@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaTalkEspresso", "KaTalkEspresso\KaTalkEspresso.csproj", "{A318454B-93EF-404F-8B01-2326418B44C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KakaoTalkDelAD", "KakaoTalkDelAD\KakaoTalkDelAD.csproj", "{A318454B-93EF-404F-8B01-2326418B44C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
