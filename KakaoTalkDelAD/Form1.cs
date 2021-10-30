@@ -361,7 +361,7 @@ namespace KakaoTalkDelAD
                     else
                     {
                         // 카톡 경로 못 찾음
-                        step00.Text = "Could not find KakaoTalk\n카카오톡 찾지 못 함";
+                        step00.Text = "Could not find KakaoTalk.\n카카오톡 찾지 못 함.";
                     }
                     break;
 
@@ -403,7 +403,7 @@ namespace KakaoTalkDelAD
                     if (runningKakaoTalk())
                     {
                         //카톡 핸들을 찾았다. 
-                        step01.Text = "KakaoTalk is running.\n카카오톡이 실행중입니다.";
+                        step01.Text = "KakaoTalk is running.\n카카오톡이 실행 중 입니다.";
                         //카톡 대기 타이머 중지
                         //waitForKatalk.Enabled = false;
                         //다음 단계로
@@ -416,7 +416,7 @@ namespace KakaoTalkDelAD
                     //광고 숨김
                     int hideResult = hideAd();
                     log.info("hide ads Result: " + hideResult);
-                    step02.Text = "Tried hiding ads\n광고 숨김 시도함";
+                    step02.Text = "Tried hiding ads.\n광고 숨김 시도 함.";
 
                     //광고가 숨겨진 경우에만 타이머를 멈춤.
                     if ((hideResult & AdCloser.AdCloseResult.NOT_CLOSED_ADS_ON_FRIENDS_LIST) == 0)

@@ -49,7 +49,7 @@
             this.step01.Name = "step01";
             this.step01.Size = new System.Drawing.Size(300, 44);
             this.step01.TabIndex = 0;
-            this.step01.Text = "1. Launching KakaoTalk\r\n카카오톡 실행중";
+            this.step01.Text = "Launching KakaoTalk\r\n카카오톡 실행 중";
             this.step01.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // step02
@@ -61,7 +61,7 @@
             this.step02.Name = "step02";
             this.step02.Size = new System.Drawing.Size(300, 44);
             this.step02.TabIndex = 0;
-            this.step02.Text = "2. Hiding ads from KakaoTalk.\r\n카카오톡에서 광고 숨기는 중";
+            this.step02.Text = "Hiding ads from KakaoTalk\r\n카카오톡에서 광고 숨기는 중";
             this.step02.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // step03
@@ -73,7 +73,7 @@
             this.step03.Name = "step03";
             this.step03.Size = new System.Drawing.Size(300, 44);
             this.step03.TabIndex = 0;
-            this.step03.Text = "3. Finished. This window will close in few seconds\r\n완료. 수 초 내로 종료됩니다.";
+            this.step03.Text = "Finished. This window will close in few seconds.\r\n완료. 수 초 내로 종료됩니다.";
             this.step03.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // step00
@@ -85,7 +85,7 @@
             this.step00.Name = "step00";
             this.step00.Size = new System.Drawing.Size(300, 44);
             this.step00.TabIndex = 0;
-            this.step00.Text = "0. Searching KakaoTalk\r\n카카오톡 찾는중";
+            this.step00.Text = "Searching KakaoTalk\r\n카카오톡 찾는 중";
             this.step00.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // waitForKatalk
