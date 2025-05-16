@@ -1,5 +1,6 @@
-# KakaoTalkDelAD
-![KakaoTalkDelAD](https://raw.githubusercontent.com/HiSkyZen/KakaoTalkDelAD/master/Docs/KakaoTalkDelAD.png)
+# KakaoTalkDelAD v2
+### 이 버전은 더 이상 지원되지 않습니다. 이 [링크](https://github.com/HiSkyZen/KakaoTalkDelAD)를 통해 v3 버전으로 업데이트하세요.
+![KakaoTalkDelAD](https://raw.githubusercontent.com/HiSkyZen/KakaoTalkDelAD_v2/main/Docs/KakaoTalkDelAD.png)
 
 카카오톡 광고 제거 프로그램. Real21c님의 코드를 참고해서 만들었습니다. https://github.com/real21c/kakao-noadv
 
